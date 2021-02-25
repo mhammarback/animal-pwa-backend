@@ -4,8 +4,6 @@ import cors from 'cors'
 import mongoose from 'mongoose'
 import crypto from 'crypto'
 import bcrypt from 'bcrypt'
-import dotenv from 'dotenv'
-
 
 const mongoUrl = process.env.MONGO_URL || "mongodb://localhost/animal"
 mongoose.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -102,7 +100,7 @@ const authenticateUser = async (req, res, next) => {
 
 
 app.get('/', (req, res) => {
-  res.send(listEndpoints(app))
+  res.send('welcome to the happy thougths api!')
 })
 
 //Sign up 
