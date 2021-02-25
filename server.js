@@ -132,7 +132,7 @@ app.post('./sessions', async (req, res) => {
 
 //POST Restricted enpoint, Animalprofile
 app.post('./profiles', authenticateUser)
-app.post('./profiles', async (res,res) => {
+app.post('./profiles', async (req,res) => {
   const userId = req.user.id
   const { animalName, birthDate, gender, weight, breed } = req.body
 
