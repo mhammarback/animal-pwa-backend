@@ -8,7 +8,7 @@ import dotenv from 'dotenv'
 
 dotenv.config()
 
-const mongoUrl = process.env.MONGO_URL || 'mongodb://localhost/animal'
+const mongoUrl = process.env.MONGO_URL || "mongodb://localhost/animal"
 mongoose.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true })
 mongoose.Promise = Promise
 
