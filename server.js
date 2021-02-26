@@ -4,6 +4,9 @@ import cors from 'cors'
 import mongoose from 'mongoose'
 import crypto from 'crypto'
 import bcrypt from 'bcrypt'
+import dotenv from 'dotenv'
+
+dotenv.config()
 
 const mongoUrl = process.env.MONGO_URL || "mongodb://localhost/animal"
 mongoose.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -104,7 +107,7 @@ app.get('/', (req, res) => {
 })
 
 //Sign up 
-app.post('./users', async (req,res) => {
+app.post('/users', async (req,res) => {
   try {
     const { name, password } = req.body
     const user = await new User({ name, password }).save()
@@ -115,7 +118,7 @@ app.post('./users', async (req,res) => {
 })
 
 //Login
-app.post('./sessions', async (req, res) => {
+app.post('/sessions', async (req, res) => {
   try {
     const { name, password } = req.body
     const user = await User.findOne({ name })
@@ -131,8 +134,8 @@ app.post('./sessions', async (req, res) => {
 })
 
 //POST Restricted enpoint, Animalprofile
-app.post('./profiles', authenticateUser)
-app.post('./profiles', async (req,res) => {
+app.post('/profiles', authenticateUser)
+app.post('/profiles', async (req,res) => {
   const userId = req.user.id
   const { animalName, birthDate, gender, weight, breed } = req.body
 
@@ -147,8 +150,8 @@ app.post('./profiles', async (req,res) => {
 }) 
 
 //GET Restricted endpoint
-app.get('./profiles', authenticateUser)
-app.get('./profiles', async (res,req) => {
+app.get('/profiles', authenticateUser)
+app.get('/profiles', async (res,req) => {
   const userId = req.user.id
 
   try {
