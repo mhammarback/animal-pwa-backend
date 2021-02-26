@@ -50,7 +50,7 @@ userSchema.pre('save', async function (next) {
 
 // Models 
 
-const User = mongoose.model('User, userSchema')
+const User = mongoose.model('User', userSchema)
 
 const AnimalProfile = mongoose.model('AnimalProfile', {
   userId: {
