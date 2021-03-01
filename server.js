@@ -143,9 +143,9 @@ app.post('/profiles', async (req,res) => {
 
   try {
     const savedAnimalProfile = await animalProfile.save()
-    res.status(200).json({message: 'Animal profile saved successfully' })
+    res.status(200).json({ message: 'Animal profile saved successfully' })
   } catch (error) {
-    res.status(400).json({ message: 'Could not save Animal profile', error})
+    res.status(400).json({ message: 'Could not save Animal profile', error })
   }
 }) 
 

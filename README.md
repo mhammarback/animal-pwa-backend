@@ -1,7 +1,12 @@
-# Express Starter Project
+# Animal app 
+this is a fullstack project and this is my backend. It's animal app where you can sign in/sign up and add important information about your cat/cats. After completed MVP i hope to implement more animal options. 
 
-This project includes the packages and babel setup for an express server, and is just meant to make things a little simpler to get up and running with.
 
-## Getting started
 
-Install dependencies with `npm install`, then start the server by running `npm run dev`
+# TECH 
+- node.js
+- express
+
+# Live project
+checkout the live project: 
+and the code for the frontend: 
