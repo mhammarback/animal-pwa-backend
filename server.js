@@ -84,6 +84,23 @@ const AnimalProfile = mongoose.model('AnimalProfile', {
   },
 })
 
+const Information = mongoose.model('Information', {
+  entryBy: {
+    type: String,
+    unique: false
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now
+  }, 
+  dailyWeight: {
+    type: Number, 
+    min: 100,
+  }, 
+  vaccinations: {
+    type: String, 
+  }, 
+})
 
 //Authentication 
 const authenticateUser = async (req, res, next) => {
@@ -157,6 +174,35 @@ app.get('/profiles', async (res,req) => {
   try {
     const profile = await AnimalProfile.findOne({ userId })
     res.json(profile)
+  } catch (err) {
+    res.status(500).json(err)
+  }
+})
+
+//Add new information 
+app.post('/entries', authenticateUser)
+app.post('/entries', async (req,res) => {
+  const userId = req.user.id
+
+  const { vaccinations, dailyWeight } = req.body
+
+  const information = new Information({ entryBy: userId, vaccinations, dailyWeight })
+
+  try {
+    const savedInformation = await information.save()
+    res.status(200).json({ message: 'Saved succesfully' })
+  } catch (error) {
+    res.status(400).json({ message: 'could not save' })
+  }
+})
+
+app.get('/entries/latest', authenticateUser)
+app.get('/entires/latest', async (req,res) => {
+  const userId = req.user.id
+
+  try {
+    const information = await Information.find({ entryBy: userId }).sort({ createdAt: 'desc' }).limit(5).exec()
+    res.json(entries)
   } catch (err) {
     res.status(500).json(err)
   }
